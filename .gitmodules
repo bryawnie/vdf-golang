@@ -1,0 +1,3 @@
+[submodule "chiavdf"]
+	path = chiavdf
+	url = https://github.com/Chia-Network/chiavdf.git
