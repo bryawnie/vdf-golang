@@ -2,9 +2,9 @@
 *Running Verifiable Delay Function in GO*
 
 ## Compile Chia VDF
-1. Clone ChiaVDF official repostory.
+1. Clone [ChiaVDF official repostory](https://github.com/Chia-Network/chiavdf.git). To do so, we can run:
 ```
-git clone https://github.com/Chia-Network/chiavdf.git
+git submodule update --init
 ```
 
 2. Install compiling tools.
@@ -12,9 +12,10 @@ git clone https://github.com/Chia-Network/chiavdf.git
 sudo apt-get install cmake libgmp-dev libboost-python-dev $PYTHON_DEV_DEPENDENCY libboost-system-dev build-essential -y
 ```
 
-3. Edit `chiavdf/src/CMakeLists.txt` and turn on the `chiavdfc` option.
+3. Edit `chiavdf/src/CMakeLists.txt`, by turning on the `chiavdfc` option, and turning off the `python` option.
 ```
 option(BUILD_CHIAVDFC "Build the chiavdfc shared library" ON)
+option(BUILD_PYTHON "Build the python bindings for chiavdf" OFF)
 ```
 
 4. Create directory `chiavdf/build`. Then move into it.
