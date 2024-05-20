@@ -9,7 +9,7 @@ git submodule update --init
 
 2. Install compiling tools.
 ```
-sudo apt-get install cmake libgmp-dev libboost-python-dev $PYTHON_DEV_DEPENDENCY libboost-system-dev build-essential -y
+sudo apt-get install cmake libgmp-dev libboost-system-dev build-essential -y
 ```
 
 3. Edit `chiavdf/src/CMakeLists.txt`, by turning on the `chiavdfc` option, and turning off the `python` option.
