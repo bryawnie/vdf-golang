@@ -15,9 +15,10 @@ func getRandomSeed() []byte {
 
 func main() {
 	// Create a new VDF instance
+	fmt.Println("Starting")
 	seed := getRandomSeed()
 	length := 100
+	fmt.Println("Creating discriminant")
 	discr := vdf.CreateDiscriminant(seed, length)
-
 	fmt.Println("Discriminant: ", discr)
 }
