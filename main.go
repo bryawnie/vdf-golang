@@ -14,7 +14,8 @@ const (
 	form_size  int    = 100     // The size of the form
 )
 
-var xHex = "0e343323a73084328eed681d238710564bd2af4176531117b5cff19bcf081fce6d0c2bd30a2cf763c5f8beb706b2b65509f9f7fcf7b092b70491bc555215292c"
+var xHex = "77254bc02fe2e06fc073dd7a1ea6f55be1b7499211b4af85308b0ed4145c3d403c5753d8d4d93cd342b68a1e369fe2dba82de2f2a9610b78a4576f4ffafbff0a"
+var chalHex = "55b7b686870a02be75cc089cbe20f464"
 
 func getRandomBytes(nBytes int) []byte {
 	seed := make([]byte, nBytes)
@@ -48,11 +49,15 @@ func VerifyVDF(challenge []byte, x []byte, y []byte, proof []byte) bool {
 	return vdf.VerifyNWesolowski(discriminant, x, append(y, proof...), iterations, lambda, uint64(recursion))
 }
 
-func runRandomExample(useFixedInput bool) {
-	var xRaw []byte
+func runExample(useFixedInput bool) {
+	var xRaw, challenge []byte
 
-	log.Debug("Creating random challenge")
-	challenge := getRandomBytes(64) // Also denoted as Seed
+	log.Debug("Creating random challenge") // Also denoted as Hex
+	if useFixedInput {
+		challenge, _ = hex.DecodeString(chalHex)
+	} else {
+		challenge = getRandomBytes(64)
+	}
 	log.Info("Challenge: ", hex.EncodeToString(challenge))
 
 	log.Debug("Assigning input X")
@@ -81,5 +86,5 @@ func main() {
 	log.SetLevel(log.DebugLevel)
 
 	// Run a random example
-	runRandomExample(true)
+	runExample(true)
 }
